@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Espresso Experiments</string>
+
+    <string name="app_name">Espresso Experiment 1</string>
+
+    <plurals name="onResume_called_xx_times">
+        <item quantity="one">onResume() called %1$d time.</item>
+        <item quantity="other">onResume() called %1$d times.</item>
+    </plurals>
+
 </resources>
