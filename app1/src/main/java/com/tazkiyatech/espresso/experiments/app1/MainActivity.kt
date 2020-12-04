@@ -14,35 +14,35 @@ class MainActivity : AppCompatActivity() {
 
         stringBuilder = StringBuilder()
 
-        textView.text = appendString("onCreate")
+        lifecycleEventsTextView.text = appendStringToStringBuilder("onCreate")
     }
 
     override fun onStart() {
         super.onStart()
-        textView.text = appendString("onStart")
+        lifecycleEventsTextView.text = appendStringToStringBuilder("onStart")
     }
 
     override fun onResume() {
         super.onResume()
-        textView.text = appendString("onResume")
+        lifecycleEventsTextView.text = appendStringToStringBuilder("onResume")
     }
 
     override fun onPause() {
         super.onPause()
-        textView.text = appendString("onPause")
+        lifecycleEventsTextView.text = appendStringToStringBuilder("onPause")
     }
 
     override fun onStop() {
         super.onStop()
-        textView.text = appendString("onStop")
+        lifecycleEventsTextView.text = appendStringToStringBuilder("onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        textView.text = appendString("onDestroy")
+        lifecycleEventsTextView.text = appendStringToStringBuilder("onDestroy")
     }
 
-    private fun appendString(string: String): String {
+    private fun appendStringToStringBuilder(string: String): String {
         if (stringBuilder.isNotEmpty()) {
             stringBuilder.append(",")
         }

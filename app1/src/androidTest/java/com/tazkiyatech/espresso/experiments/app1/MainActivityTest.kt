@@ -28,7 +28,7 @@ class MainActivityTest {
         activityScenario = launch(MainActivity::class.java)
 
         // Then.
-        onView(withId(R.id.textView)).check(matches(withText("onCreate,onStart,onResume")))
+        onView(withId(R.id.lifecycleEventsTextView)).check(matches(withText("onCreate,onStart,onResume")))
     }
 
     @Test
@@ -41,7 +41,7 @@ class MainActivityTest {
         activityScenario.moveToState(Lifecycle.State.RESUMED)
 
         // Then.
-        onView(withId(R.id.textView)).check(matches(withText("onCreate,onStart,onResume,onPause,onStop,onStart,onResume")))
+        onView(withId(R.id.lifecycleEventsTextView)).check(matches(withText("onCreate,onStart,onResume,onPause,onStop,onStart,onResume")))
     }
 
     @Test
@@ -54,6 +54,6 @@ class MainActivityTest {
         activityScenario.moveToState(Lifecycle.State.RESUMED)
 
         // Then.
-        onView(withId(R.id.textView)).check(matches(withText("onCreate,onStart,onResume,onPause,onResume")))
+        onView(withId(R.id.lifecycleEventsTextView)).check(matches(withText("onCreate,onStart,onResume,onPause,onResume")))
     }
 }
