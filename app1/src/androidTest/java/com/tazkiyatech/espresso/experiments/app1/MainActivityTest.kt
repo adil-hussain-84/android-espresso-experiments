@@ -1,10 +1,8 @@
 package com.tazkiyatech.espresso.experiments.app1
 
-import android.app.Application
-import android.content.res.Resources
+import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ActivityScenario.launch
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -16,20 +14,40 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
 
-    private val resources: Resources
-        get() = ApplicationProvider.getApplicationContext<Application>().resources
-
     private lateinit var activityScenario: ActivityScenario<MainActivity>
 
     @Test
     fun text_after_activity_is_launched() {
-        // Given.
-        val expected = resources.getQuantityString(R.plurals.onResume_called_xx_times, 1, 1)
-
         // When.
         activityScenario = launch(MainActivity::class.java)
 
         // Then.
-        onView(withId(R.id.textView)).check(matches(withText(expected)))
+        onView(withId(R.id.textView)).check(matches(withText("onCreate,onStart,onResume")))
+    }
+
+    @Test
+    fun text_after_activity_is_launched_then_moved_back_to_created_state_then_moved_forward_to_resumed_state() {
+        // Given.
+        activityScenario = launch(MainActivity::class.java)
+
+        // When.
+        activityScenario.moveToState(Lifecycle.State.CREATED)
+        activityScenario.moveToState(Lifecycle.State.RESUMED)
+
+        // Then.
+        onView(withId(R.id.textView)).check(matches(withText("onCreate,onStart,onResume,onPause,onStop,onStart,onResume")))
+    }
+
+    @Test
+    fun text_after_activity_is_launched_then_moved_back_to_started_state_then_moved_forward_to_resumed_state() {
+        // Given.
+        activityScenario = launch(MainActivity::class.java)
+
+        // When.
+        activityScenario.moveToState(Lifecycle.State.STARTED)
+        activityScenario.moveToState(Lifecycle.State.RESUMED)
+
+        // Then.
+        onView(withId(R.id.textView)).check(matches(withText("onCreate,onStart,onResume,onPause,onResume")))
     }
 }
