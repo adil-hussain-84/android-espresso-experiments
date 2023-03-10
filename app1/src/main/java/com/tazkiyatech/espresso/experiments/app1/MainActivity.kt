@@ -1,18 +1,22 @@
 package com.tazkiyatech.espresso.experiments.app1
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var stringBuilder: StringBuilder
+    private lateinit var stringBuilder: StringBuilder
+
+    private lateinit var lifecycleEventsTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         stringBuilder = StringBuilder()
+
+        lifecycleEventsTextView = findViewById(R.id.lifecycleEventsTextView)
 
         lifecycleEventsTextView.text = appendStringToStringBuilder("onCreate")
     }
