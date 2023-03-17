@@ -1,3 +1,3 @@
-rootProject.name = "EspressoExperiments"
+rootProject.name = "android-espresso-experiments"
 
 include ':app1'
